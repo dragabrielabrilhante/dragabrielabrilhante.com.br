@@ -1,26 +1,28 @@
-# LP da Dra. Gabriela Brilhante — GitHub + Vercel
+# LP da Dra. Gabriela Brilhante — Vercel, Google Sheets e WhatsApp
 
-Landing page estática em HTML, CSS e JavaScript, com imagens locais e agendamento pelo WhatsApp comercial **(14) 99889-4616**.
+Landing page em HTML, CSS e JavaScript, com uma função de servidor na Vercel para registrar os formulários na planilha **LEADS GABI LP**. O contato continua pelo WhatsApp comercial **(14) 99889-4616**.
 
-## Como funciona o contato
+**A integração precisa ser ativada antes de publicar esta versão.** É necessário implantar o Google Apps Script e configurar duas variáveis na Vercel. Instalar o Google Drive no ChatGPT não concede ao site autorização permanente para escrever na planilha. Siga [o guia de ativação](integrations/google-sheets/SETUP.md).
+
+## Fluxo do formulário
 
 1. A pessoa informa modalidade, interesse, disponibilidade, nome, cidade e WhatsApp.
-2. Na última etapa, vê o valor da consulta (R$ 250) e a informação de retorno (R$ 150, cobrado separadamente), e confirma o compartilhamento dos dados.
-3. “Revisar respostas” apresenta o resumo. “Editar minhas respostas” permite corrigir o preenchimento sem perder os dados.
-4. “Enviar pelo WhatsApp” abre `https://wa.me/5514998894616` com todas as respostas na mensagem.
-5. A pessoa revisa e confirma o envio dentro do WhatsApp. A equipe verifica a disponibilidade e orienta a confirmação do agendamento.
+2. Na última etapa, vê a consulta de R$ 250 e o retorno de R$ 150, cobrado separadamente, e autoriza o registro para contato sobre agendamento.
+3. **Salvar e revisar respostas** envia o formulário ao servidor. A próxima tela aparece somente após a confirmação de gravação na planilha.
+4. **Enviar pelo WhatsApp** abre `https://wa.me/5514998894616` com todas as respostas na mensagem. A pessoa confirma o envio no aplicativo.
+5. **Editar minhas respostas** mantém os campos preenchidos. Ao salvar novamente, a mesma linha é atualizada.
 
-O botão abre uma conversa com texto preenchido; não envia mensagens automaticamente. A página não mantém um banco de dados de leads, não grava respostas no navegador e não usa uma API de mensagens. As respostas ficam na página durante o preenchimento e são incluídas na mensagem quando a pessoa escolhe continuar pelo WhatsApp.
+O lead é registrado ao concluir o formulário, mesmo que a pessoa não clique no WhatsApp. Etapas incompletas e preenchimentos sem consentimento não são registrados. Cada preenchimento usa um identificador mantido apenas durante a página aberta; recarregar a página e preencher novamente inicia outro envio.
 
-Não solicite sintomas ou histórico clínico neste formulário. O aviso de privacidade explica o destino e o uso das informações. Preencher o formulário não garante a reserva de horário.
+Falhas de gravação mantêm as respostas preenchidas e permitem tentar novamente, sem exibir uma confirmação falsa. Tentativas repetidas do mesmo envio atualizam a mesma linha. As respostas não são gravadas em `localStorage` ou em cookies.
 
-O botão flutuante da Doctoralia abre o perfil da médica em uma nova aba, como outra opção de agendamento.
+O formulário não solicita sintomas ou histórico clínico. A reserva do horário depende da confirmação pela equipe. O botão flutuante da Doctoralia oferece outra opção de agendamento.
 
-## Publicação na Vercel
+## Vercel
 
 O Meta Pixel `1459303026043736` está incluído em `dist/index.html` e registra o evento `PageView`. O código não envia respostas do formulário ao pixel. O aviso de privacidade informa o uso da ferramenta para medir visitas e resultados dos anúncios. A recepção dos eventos deve ser conferida em **Testar eventos**, no Gerenciador de Eventos da Meta, após a publicação.
 
-Importe este repositório do GitHub como um novo projeto. O arquivo `vercel.json` já contém a configuração:
+Importe o repositório do GitHub. A configuração está no `vercel.json`:
 
 | Configuração | Valor |
 | --- | --- |
@@ -29,29 +31,34 @@ Importe este repositório do GitHub como um novo projeto. O arquivo `vercel.json
 | Build Command | Vazio |
 | Install Command | Vazio |
 | Output Directory | `dist` |
-| Environment Variables | Nenhuma |
+| Variáveis do servidor | `LEADS_SCRIPT_URL` e `LEADS_SCRIPT_TOKEN` |
 
-Clique em **Deploy**. Não é necessário instalar dependências ou criar `package.json`. Confirme que a pasta `dist` e o arquivo `vercel.json` estão na raiz do repositório. Não envie apenas um ZIP.
+O arquivo `api/leads.mjs` é uma Vercel Function. Não exige dependências nem `package.json`. As variáveis são lidas somente no servidor; nunca coloque o token em `dist`, no GitHub ou em uma variável pública.
+
+Depois de alterar as variáveis, faça um novo deploy. Configure o ambiente de Preview para verificar a integração antes de ativar em Production. Sem configuração válida, a API retorna erro e o formulário permanece na última etapa.
 
 ## Arquivos
 
-- `dist/index.html`: conteúdo, estilos e formulário.
-- `dist/app.js`: etapas, validação, resumo e link com a mensagem do WhatsApp.
+- `dist/index.html`: conteúdo, estilos, formulário e aviso de privacidade.
+- `dist/app.js`: etapas, gravação confirmada e link do WhatsApp.
 - `dist/assets/`: logo, foto e ícone da Doctoralia.
-- `vercel.json`: configuração da publicação.
-- `ASSET_SOURCES.md`: origem do ícone externo.
-- `.gitignore`: exclusões de arquivos locais; a pasta `dist` deve ser versionada.
+- `api/leads.mjs`: validação e comunicação do servidor com o Google.
+- `integrations/google-sheets/Code.gs`: gravação na planilha fornecida.
+- `integrations/google-sheets/appsscript.json`: manifesto do Apps Script.
+- `integrations/google-sheets/SETUP.md`: autorização, implantação e verificação.
+- `.env.example`: nomes das variáveis, sem credenciais.
 
-## Validação e manutenção
+## Limites e manutenção
 
-A sintaxe do JavaScript, as referências locais e a remoção dos avisos de demonstração foram conferidas. O fluxo de validação, montagem da mensagem, número de destino, edição de respostas e codificação de acentos e caracteres especiais foi verificado com dados fictícios, sem enviar mensagens reais.
+A captura automática depende da Vercel e do Google Apps Script. Abrir o HTML localmente ou copiar somente `dist` para uma hospedagem estática não disponibiliza a API. Outras cópias da LP não são sincronizadas automaticamente com este repositório.
 
-Depois do deploy, confira a página no computador e no celular e abra o WhatsApp para revisar a mensagem. Não foi realizado um deploy na conta da Vercel nem uma confirmação de entrega pelo WhatsApp nesta revisão.
+O servidor aceita apenas as opções do formulário, valida tamanho e telefone, verifica a origem das requisições do navegador e rejeita o campo de controle preenchido por robôs. O Apps Script exige um token e usa um bloqueio para evitar gravações concorrentes. Esses controles não substituem uma proteção contra spam caso ela se torne necessária.
 
-Para alterar o destino, atualize `whatsappNumber` em `dist/app.js`, o contato exibido na página e este documento. Para atualizar a LP, faça um novo commit na branch conectada à Vercel. Outras cópias da página não são sincronizadas automaticamente com este repositório.
+Mantenha a planilha compartilhada apenas com a equipe autorizada. Não reutilize a implantação do Apps Script para outro formulário sem revisar as colunas e a finalidade dos dados.
 
 ## Referências oficiais
 
 - WhatsApp: https://faq.whatsapp.com/5913398998672934/?locale=pt_BR
-- Build na Vercel: https://vercel.com/docs/builds/configure-a-build
-- `vercel.json`: https://vercel.com/docs/project-configuration/vercel-json
+- Vercel Functions com Node.js: https://vercel.com/docs/functions/runtimes/node-js
+- Configuração da Vercel: https://vercel.com/docs/project-configuration/vercel-json
+- Apps Script web apps: https://developers.google.com/apps-script/guides/web
