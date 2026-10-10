@@ -18,6 +18,8 @@ O botão flutuante da Doctoralia abre o perfil da médica em uma nova aba, como 
 
 ## Publicação na Vercel
 
+O Meta Pixel `1459303026043736` está incluído em `dist/index.html` e registra o evento `PageView`. O código não envia respostas do formulário ao pixel. O aviso de privacidade informa o uso da ferramenta para medir visitas e resultados dos anúncios. A recepção dos eventos deve ser conferida em **Testar eventos**, no Gerenciador de Eventos da Meta, após a publicação.
+
 Importe este repositório do GitHub como um novo projeto. O arquivo `vercel.json` já contém a configuração:
 
 | Configuração | Valor |
