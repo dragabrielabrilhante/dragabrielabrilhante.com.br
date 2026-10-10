@@ -1,7 +1,8 @@
 /**
  * Registro de leads da LP da Dra. Gabriela Brilhante.
  *
- * Instalação: abra a planilha > Extensões > Apps Script e cole este arquivo.
+ * Instalação: abra a planilha > Extensões > Apps Script e substitua TODO o
+ * conteúdo de Código.gs por este arquivo. Não coloque dentro de myFunction.
  * Execute configureLeadCapture uma vez, revise a autorização do Google e
  * implante como Aplicativo da Web: executar como você, acesso Qualquer pessoa.
  * A URL /exec e o token criado em Propriedades do projeto devem ser

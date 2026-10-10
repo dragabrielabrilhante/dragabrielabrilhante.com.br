@@ -29,7 +29,7 @@ Em **Compartilhar**, mantenha o acesso limitado à equipe que cuida dos agendame
 ## 2. Criar o Apps Script
 
 1. Abra a planilha com a conta responsável e escolha **Extensões → Apps Script**. Nome sugerido para o projeto: **Leads LP — Dra. Gabriela**.
-2. Substitua o conteúdo de `Code.gs` pelo arquivo `Code.gs` desta pasta.
+2. Substitua **todo o conteúdo** de `Código.gs` (ou `Code.gs`) pelo arquivo `Code.gs` desta pasta. Apague também a função inicial `myFunction` e suas chaves: as funções deste arquivo precisam ficar diretamente no editor, sem uma função envolvendo o código.
 3. Em **Configurações do projeto**, habilite a exibição do arquivo de manifesto `appsscript.json`. Substitua seu conteúdo pelo manifesto desta pasta e salve.
 4. No editor, selecione a função `configureLeadCapture` e execute uma vez.
 5. Revise e autorize a permissão solicitada pelo Google. O escopo permite acesso a planilhas da conta; este código abre somente a planilha especificada acima. O Google pode exigir revisão da autorização de um aplicativo próprio ainda não verificado.
@@ -72,6 +72,7 @@ Uma resposta de sucesso exige confirmação do Google após gravar. Se ocorrer e
 
 ## Atualizações e solução de erros
 
+- **Script function not found: doGet:** substitua todo o conteúdo de Código.gs pelo arquivo fornecido, sem envolver o código em myFunction. Salve, execute configureLeadCapture e publique uma nova versão da implantação. A URL /exec deve responder com JSON contendo `post_required` quando aberta no navegador; essa resposta indica que a gravação exige um POST autenticado.
 - **Não foi possível registrar:** confira as variáveis do ambiente da implantação, o acesso da conta à planilha e os cabeçalhos. O navegador não recebe detalhes internos ou credenciais.
 - **A URL /exec abre o login do Google:** em Implantar → Gerenciar implantações → Editar, confirme Executar como você e acesso Qualquer pessoa. Selecione uma nova versão e implante. A função da Vercel precisa acessar essa URL sem sessão Google; a gravação permanece protegida pelo token.
 - **H e I não aparecem na planilha:** execute configureLeadCapture no editor, revise a autorização solicitada pelo Google e confirme o término sem erros. Essa função prepara as duas colunas e cria a propriedade LEADS_SCRIPT_TOKEN.

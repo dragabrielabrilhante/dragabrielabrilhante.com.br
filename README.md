@@ -20,6 +20,8 @@ O formulário não solicita sintomas ou histórico clínico. A reserva do horár
 
 ## Vercel
 
+O Meta Pixel `1459303026043736` está incluído em `dist/index.html` e registra o evento `PageView`. O código não envia respostas do formulário ao pixel. O aviso de privacidade informa o uso da ferramenta para medir visitas e resultados dos anúncios. A recepção dos eventos deve ser conferida em **Testar eventos**, no Gerenciador de Eventos da Meta, após a publicação.
+
 Importe o repositório do GitHub. A configuração está no `vercel.json`:
 
 | Configuração | Valor |
