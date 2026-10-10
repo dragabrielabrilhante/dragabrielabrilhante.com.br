@@ -52,10 +52,10 @@ No projeto da LP, abra **Settings → Environment Variables** e adicione:
 
 | Nome | Valor |
 | --- | --- |
-| `LEADS_SCRIPT_URL` | URL da implantação, `https://script.google.com/macros/s/…/exec` |
+| `LEADS_SCRIPT_URL` | `https://script.google.com/macros/s/AKfycbwafDx_WWFnCHBCKhXv-sP0jCt3X-S6w9YBGPbxzSybDg3-Eh2nP3MyyKcsFeGGCyk/exec` |
 | `LEADS_SCRIPT_TOKEN` | Valor da propriedade de mesmo nome em Configurações do projeto do Apps Script |
 
-Marque `LEADS_SCRIPT_TOKEN` como sensível e mantenha-o apenas no servidor. Não use prefixos públicos como `NEXT_PUBLIC_` ou `VITE_`. `.env.example` contém apenas os nomes e deve continuar sem valores.
+Marque `LEADS_SCRIPT_TOKEN` como sensível e mantenha-o apenas no servidor. Não use prefixos públicos como `NEXT_PUBLIC_` ou `VITE_`. `.env.example` já contém a URL recebida; o token deve continuar vazio no repositório. Se uma nova implantação mudar a URL, atualize a variável na Vercel.
 
 Configure primeiro **Preview** e faça um novo deploy da branch da integração. Depois da verificação abaixo, configure **Production** e publique a versão verificada. Alterar uma variável exige um novo deploy para ter efeito.
 
@@ -73,6 +73,8 @@ Uma resposta de sucesso exige confirmação do Google após gravar. Se ocorrer e
 ## Atualizações e solução de erros
 
 - **Não foi possível registrar:** confira as variáveis do ambiente da implantação, o acesso da conta à planilha e os cabeçalhos. O navegador não recebe detalhes internos ou credenciais.
+- **A URL /exec abre o login do Google:** em Implantar → Gerenciar implantações → Editar, confirme Executar como você e acesso Qualquer pessoa. Selecione uma nova versão e implante. A função da Vercel precisa acessar essa URL sem sessão Google; a gravação permanece protegida pelo token.
+- **H e I não aparecem na planilha:** execute configureLeadCapture no editor, revise a autorização solicitada pelo Google e confirme o término sem erros. Essa função prepara as duas colunas e cria a propriedade LEADS_SCRIPT_TOKEN.
 - **Novo código no Apps Script:** crie uma nova versão da implantação existente para manter a URL `/exec`. Apenas salvar o editor não atualiza a versão publicada.
 - **Troca de token:** gere e configure um novo valor em Propriedades do projeto e na Vercel, depois faça um novo deploy. Não remova a exigência de token.
 - **Mudança de colunas:** preserve A:I ou adapte explicitamente o código. Não exclua a coluna I se quiser manter a proteção contra duplicação.
