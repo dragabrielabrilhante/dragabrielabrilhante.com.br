@@ -1,76 +1,55 @@
 # LP da Dra. Gabriela Brilhante — GitHub + Vercel
 
-Pacote preparado em 10/10/2026, a partir da versão mais recente da landing page.
+Landing page estática em HTML, CSS e JavaScript, com imagens locais e agendamento pelo WhatsApp comercial **(14) 99889-4616**.
 
-Site estático em HTML, CSS e JavaScript. As imagens e os ícones estão incluídos. O CSS está dentro de `dist/index.html`.
+## Como funciona o contato
 
-## Estado do formulário
+1. A pessoa informa modalidade, interesse, disponibilidade, nome, cidade e WhatsApp.
+2. Na última etapa, vê o valor da consulta (R$ 250) e a informação de retorno (R$ 150, cobrado separadamente), e confirma o compartilhamento dos dados.
+3. “Revisar respostas” apresenta o resumo. “Editar minhas respostas” permite corrigir o preenchimento sem perder os dados.
+4. “Enviar pelo WhatsApp” abre `https://wa.me/5514998894616` com todas as respostas na mensagem.
+5. A pessoa revisa e confirma o envio dentro do WhatsApp. A equipe verifica a disponibilidade e orienta a confirmação do agendamento.
 
-**O formulário é uma demonstração: não envia, não salva e não recebe leads.**
-As respostas são usadas somente para exibir o resumo durante o preenchimento.
-Não há servidor, banco de dados, envio por e-mail ou integração com WhatsApp neste pacote.
-Os avisos de teste continuam visíveis na página.
+O botão abre uma conversa com texto preenchido; não envia mensagens automaticamente. A página não mantém um banco de dados de leads, não grava respostas no navegador e não usa uma API de mensagens. As respostas ficam na página durante o preenchimento e são incluídas na mensagem quando a pessoa escolhe continuar pelo WhatsApp.
 
-O botão flutuante da Doctoralia abre o perfil real da médica em uma nova aba. Ele não transmite as respostas do formulário.
+Não solicite sintomas ou histórico clínico neste formulário. O aviso de privacidade explica o destino e o uso das informações. Preencher o formulário não garante a reserva de horário.
 
-Para usar a LP na captação real, será necessário definir e conectar o destino das solicitações. A publicação na Vercel, por si só, não ativa o recebimento de leads.
+O botão flutuante da Doctoralia abre o perfil da médica em uma nova aba, como outra opção de agendamento.
 
-## 1. Publicar os arquivos no GitHub
+## Publicação na Vercel
 
-1. Extraia o arquivo ZIP.
-2. Crie um repositório no GitHub ou abra o repositório que usará para esta LP.
-3. Envie **o conteúdo da pasta `lp-gabriela-vercel`** para a raiz do repositório.
-4. Confirme que `vercel.json`, `README.md` e a pasta `dist` aparecem lado a lado na raiz.
-5. Confirme o envio com um commit.
-
-Não envie apenas o ZIP: a Vercel precisa dos arquivos extraídos. Mantenha a pasta `dist` e os nomes dos arquivos, inclusive letras maiúsculas e minúsculas.
-
-## 2. Importar na Vercel
-
-Na Vercel, crie um novo projeto e importe esse repositório do GitHub.
+Importe este repositório do GitHub como um novo projeto. O arquivo `vercel.json` já contém a configuração:
 
 | Configuração | Valor |
 | --- | --- |
 | Framework Preset | Other |
 | Root Directory | Raiz do repositório (`./`) |
-| Build Command | Vazio: sem build |
-| Install Command | Vazio: sem instalação |
+| Build Command | Vazio |
+| Install Command | Vazio |
 | Output Directory | `dist` |
 | Environment Variables | Nenhuma |
 
-O arquivo `vercel.json` já declara o framework, a pasta de saída e os comandos vazios. Se houver configurações antigas no projeto da Vercel, confira os campos acima antes de publicar.
+Clique em **Deploy**. Não é necessário instalar dependências ou criar `package.json`. Confirme que a pasta `dist` e o arquivo `vercel.json` estão na raiz do repositório. Não envie apenas um ZIP.
 
-Clique em **Deploy**. Não é necessário escolher React, Next.js ou Vite. Também não é necessário criar um `package.json`, instalar Node.js no seu computador ou executar `npm install`.
+## Arquivos
 
-## Arquivos incluídos
+- `dist/index.html`: conteúdo, estilos e formulário.
+- `dist/app.js`: etapas, validação, resumo e link com a mensagem do WhatsApp.
+- `dist/assets/`: logo, foto e ícone da Doctoralia.
+- `vercel.json`: configuração da publicação.
+- `ASSET_SOURCES.md`: origem do ícone externo.
+- `.gitignore`: exclusões de arquivos locais; a pasta `dist` deve ser versionada.
 
-| Arquivo | Função |
-| --- | --- |
-| `vercel.json` | Configura a Vercel para servir o conteúdo de `dist` |
-| `dist/index.html` | Página, textos, formulário e estilos |
-| `dist/app.js` | Etapas do formulário, validação e botão da Doctoralia |
-| `dist/assets/logo-gabriela-brilhante.png` | Logo da médica |
-| `dist/assets/foto-dra-gabriela.jpg` | Foto de apresentação |
-| `dist/assets/doctoralia-icon.png` | Ícone da Doctoralia |
-| `ASSET_SOURCES.md` | Origem do ícone externo |
-| `.gitignore` | Exclusões de arquivos locais do Git |
+## Validação e manutenção
 
-## Conferência após o deploy
+A sintaxe do JavaScript, as referências locais e a remoção dos avisos de demonstração foram conferidas. O fluxo de validação, montagem da mensagem, número de destino, edição de respostas e codificação de acentos e caracteres especiais foi verificado com dados fictícios, sem enviar mensagens reais.
 
-- Abra a URL fornecida pela Vercel e confira a página no computador e no celular.
-- Percorra as quatro etapas usando dados fictícios.
-- Na última etapa, confira a consulta de R$ 250 e a informação de retorno de R$ 150, cobrado separadamente.
-- Abra e feche o botão da Doctoralia. O link deve abrir o perfil em uma nova aba.
-- Se aparecer 404 na página inicial, confira `Root Directory = ./` e `Output Directory = dist`, com `vercel.json` na raiz.
-- Se faltar uma imagem, confira se todos os arquivos de `dist/assets` foram enviados com os nomes preservados.
+Depois do deploy, confira a página no computador e no celular e abra o WhatsApp para revisar a mensagem. Não foi realizado um deploy na conta da Vercel nem uma confirmação de entrega pelo WhatsApp nesta revisão.
 
-Este pacote foi revisado quanto à configuração e às referências locais. Não foi feito um deploy na sua conta da Vercel.
-
-## Atualizações futuras
-
-Edite os arquivos no GitHub e faça um novo commit na branch conectada à Vercel. Atualizações feitas em outra cópia da página não são sincronizadas automaticamente com esse repositório.
+Para alterar o destino, atualize `whatsappNumber` em `dist/app.js`, o contato exibido na página e este documento. Para atualizar a LP, faça um novo commit na branch conectada à Vercel. Outras cópias da página não são sincronizadas automaticamente com este repositório.
 
 ## Referências oficiais
 
-- Configuração de build: https://vercel.com/docs/builds/configure-a-build
-- Configuração do `vercel.json`: https://vercel.com/docs/project-configuration/vercel-json
+- WhatsApp: https://faq.whatsapp.com/5913398998672934/?locale=pt_BR
+- Build na Vercel: https://vercel.com/docs/builds/configure-a-build
+- `vercel.json`: https://vercel.com/docs/project-configuration/vercel-json
