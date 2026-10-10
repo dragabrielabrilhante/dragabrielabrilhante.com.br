@@ -7,6 +7,12 @@ const whatsappNumber='5514998894616';
 const labels=['Sua preferência','Seu primeiro contato','Sua disponibilidade','Seu investimento e contato'];
 let current=0;
 function selected(name){return new FormData(form).get(name)||'';}
+function focusHeading(heading){
+ heading.focus({preventScroll:true});
+ if(typeof window!=='undefined'&&window.matchMedia('(max-width:700px)').matches){
+  heading.scrollIntoView({block:'start',behavior:'auto'});
+ }
+}
 function showStep(index,focus=true){
  current=index;steps.forEach((step,i)=>step.hidden=i!==index);
  document.querySelectorAll('.progress span').forEach((bar,i)=>bar.classList.toggle('on',i<=index));
@@ -14,10 +20,10 @@ function showStep(index,focus=true){
  document.getElementById('stepName').textContent=labels[index];
  document.getElementById('back').hidden=index===0;
  document.getElementById('nextLabel').textContent=index===3?'Revisar respostas':'Continuar';
- error.textContent='';if(focus)steps[index].querySelector('h3').focus({preventScroll:true});
+ error.textContent='';if(focus)focusHeading(steps[index].querySelector('h3'));
 }
 function validation(){
- if(current===0&&!selected('modality'))return ['Escolha como prefere ser atendida(o).','modality'];
+ if(current===0&&!selected('modality'))return ['Escolha como prefere ser atendido(a).','modality'];
  if(current===1&&!selected('goal'))return ['Selecione o motivo do contato.','goal'];
  if(current===2&&!selected('when'))return ['Escolha quando gostaria de agendar.','when'];
  if(current===2&&!selected('period'))return ['Selecione um período de preferência.','period'];
@@ -39,7 +45,7 @@ form.addEventListener('submit',event=>{
  for(const [label,value] of entries){const row=document.createElement('div');const key=document.createElement('span');key.textContent=label;const val=document.createElement('strong');val.textContent=value;row.append(key,val);summary.append(row);}
  const message=['Olá, Dra. Gabriela! Gostaria de conversar sobre o atendimento. Preenchi o formulário do site:', '', ...entries.map(([label,value])=>`${label}: ${value}`), '', 'Aguardo a confirmação da disponibilidade e as orientações para agendar.'].join('\n');
  whatsappContact.href=`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
- form.hidden=true;document.getElementById('progressBlock').hidden=true;document.getElementById('success').hidden=false;document.querySelector('#success h3').focus({preventScroll:true});
+ form.hidden=true;document.getElementById('progressBlock').hidden=true;document.getElementById('success').hidden=false;focusHeading(document.querySelector('#success h3'));
 });
 document.getElementById('back').addEventListener('click',()=>showStep(Math.max(0,current-1)));
 form.elements.phone.addEventListener('input',event=>{let digits=event.target.value.replace(/\D/g,'').slice(0,11);if(digits.length>2)digits='('+digits.slice(0,2)+') '+digits.slice(2);if(digits.replace(/\D/g,'').length>6){const at=digits.replace(/\D/g,'').length===11?10:9;digits=digits.slice(0,at)+'-'+digits.slice(at);}event.target.value=digits;});
@@ -69,3 +75,60 @@ document.addEventListener('keydown',event=>{
 document.addEventListener('pointerdown',event=>{
  if(!doctoraliaPanel.hidden&&!doctoraliaWidget.contains(event.target))setDoctoraliaOpen(false,false);
 });
+
+// No celular, mantenha os controles livres e ofereça a Doctoralia dentro do formulário.
+if(typeof window!=='undefined'&&typeof IntersectionObserver!=='undefined'){
+ const mobileViewport=window.matchMedia('(max-width:700px)');
+ let formInView=false;
+ function syncDoctoraliaForMobile(){
+  const hide=mobileViewport.matches&&formInView;
+  if(hide&&!doctoraliaPanel.hidden)setDoctoraliaOpen(false,false);
+  doctoraliaWidget.classList.toggle('is-near-form',hide);
+  if(hide){
+   doctoraliaWidget.setAttribute('aria-hidden','true');
+   doctoraliaWidget.setAttribute('inert','');
+  }else{
+   doctoraliaWidget.removeAttribute('aria-hidden');
+   doctoraliaWidget.removeAttribute('inert');
+  }
+ }
+ const formObserver=new IntersectionObserver(([entry])=>{
+  formInView=entry.isIntersecting;
+  syncDoctoraliaForMobile();
+ },{threshold:0});
+ formObserver.observe(document.getElementById('agendamento'));
+ if(mobileViewport.addEventListener)mobileViewport.addEventListener('change',syncDoctoraliaForMobile);
+ else mobileViewport.addListener(syncDoctoraliaForMobile);
+}
+
+const heroHeadline=document.getElementById('heroHeadline');
+if(heroHeadline&&typeof window!=='undefined'){
+ const phrases=[...heroHeadline.querySelectorAll('.hero-phrase')];
+ const controls=document.getElementById('heroHeadlineControls');
+ const count=document.getElementById('heroPhraseCount');
+ const reducedMotion=window.matchMedia('(prefers-reduced-motion:reduce)');
+ let phraseIndex=0;
+ let headlineVisible=true;
+ let rotationTimer=null;
+ function nextPhrase(){
+  phraseIndex=(phraseIndex+1)%phrases.length;
+  phrases.forEach((phrase,index)=>phrase.classList.toggle('is-active',index===phraseIndex));
+  count.textContent=String(phraseIndex+1).padStart(2,'0')+' / '+String(phrases.length).padStart(2,'0');
+ }
+ function syncRotation(){
+  if(rotationTimer!==null){window.clearInterval(rotationTimer);rotationTimer=null;}
+  controls.hidden=reducedMotion.matches;
+  if(!reducedMotion.matches&&!document.hidden&&headlineVisible)rotationTimer=window.setInterval(nextPhrase,6000);
+ }
+ document.addEventListener('visibilitychange',syncRotation);
+ if(reducedMotion.addEventListener)reducedMotion.addEventListener('change',syncRotation);
+ else reducedMotion.addListener(syncRotation);
+ if(typeof IntersectionObserver!=='undefined'){
+  const headlineObserver=new IntersectionObserver(([entry])=>{
+   headlineVisible=entry.isIntersecting;
+   syncRotation();
+  },{threshold:0});
+  headlineObserver.observe(heroHeadline);
+ }
+ syncRotation();
+}
