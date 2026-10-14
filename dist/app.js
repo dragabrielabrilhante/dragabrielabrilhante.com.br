@@ -57,9 +57,9 @@ const mobileWhatsapp=document.getElementById('mobileWhatsapp');
 if(mobileWhatsapp)mobileWhatsapp.addEventListener('click',()=>{mobileWhatsapp.href=buildWhatsAppUrl();});
 if(typeof window!=='undefined'&&typeof IntersectionObserver!=='undefined'){
  const mobileViewport=window.matchMedia('(max-width:700px)');
- const heroContact=document.querySelector('.hero-contact .hero-agenda');
+ const heroSection=document.querySelector('.hero');
  let formInView=false;
- let heroContactInView=true;
+ let heroInView=true;
  syncMobileControls=()=>{
   const hideDoctoralia=mobileViewport.matches&&formInView;
   if(hideDoctoralia&&!doctoraliaPanel.hidden)setDoctoraliaOpen(false,false);
@@ -71,17 +71,17 @@ if(typeof window!=='undefined'&&typeof IntersectionObserver!=='undefined'){
    doctoraliaWidget.removeAttribute('aria-hidden');
    doctoraliaWidget.removeAttribute('inert');
   }
-  if(mobileContact)mobileContact.hidden=!mobileViewport.matches||heroContactInView||formInView||!doctoraliaPanel.hidden;
+  if(mobileContact)mobileContact.hidden=!mobileViewport.matches||heroInView||formInView||!doctoraliaPanel.hidden;
  };
  const contactObserver=new IntersectionObserver(entries=>{
   for(const entry of entries){
-   if(entry.target===heroContact)heroContactInView=entry.isIntersecting;
+   if(entry.target===heroSection)heroInView=entry.isIntersecting;
    else formInView=entry.isIntersecting;
   }
   syncMobileControls();
  },{threshold:0});
  contactObserver.observe(document.getElementById('agendamento'));
- if(heroContact)contactObserver.observe(heroContact);
+ if(heroSection)contactObserver.observe(heroSection);
  if(mobileViewport.addEventListener)mobileViewport.addEventListener('change',syncMobileControls);
  else mobileViewport.addListener(syncMobileControls);
  syncMobileControls();
