@@ -1,59 +1,32 @@
 'use strict';
 const form=document.getElementById('leadForm');
-const steps=[...document.querySelectorAll('.step')];
-const error=document.getElementById('error');
 const whatsappContact=document.getElementById('whatsappContact');
 const whatsappNumber='5514998894616';
-const labels=['Sua preferência','Seu primeiro contato','Sua disponibilidade','Seu investimento e contato'];
-let current=0;
-function selected(name){return new FormData(form).get(name)||'';}
-function focusHeading(heading){
- heading.focus({preventScroll:true});
- if(typeof window!=='undefined'&&window.matchMedia('(max-width:700px)').matches){
-  heading.scrollIntoView({block:'start',behavior:'auto'});
- }
+function buildWhatsAppUrl(){
+ const data=new FormData(form);
+ const name=String(data.get('name')||'').trim().slice(0,80);
+ const allowedModalities=['On-line','Presencial em Marília','Ainda não decidi'];
+ const selected=String(data.get('modality')||'');
+ const modality=allowedModalities.includes(selected)?selected:'';
+ const message=['Olá, Dra. Gabriela! Vim pelo site e gostaria de conversar sobre o agendamento de uma consulta.'];
+ if(name)message.push('Nome: '+name);
+ if(modality)message.push('Modalidade: '+modality);
+ message.push('Vi o valor da consulta particular: R$ 250.','Quais são os próximos horários disponíveis?');
+ return 'https://wa.me/'+whatsappNumber+'?text='+encodeURIComponent(message.join('\n'));
 }
-function showStep(index,focus=true){
- current=index;steps.forEach((step,i)=>step.hidden=i!==index);
- document.querySelectorAll('.progress span').forEach((bar,i)=>bar.classList.toggle('on',i<=index));
- document.getElementById('stepLabel').textContent=`0${index+1} / 04`;
- document.getElementById('stepName').textContent=labels[index];
- document.getElementById('back').hidden=index===0;
- document.getElementById('nextLabel').textContent=index===3?'Revisar respostas':'Continuar';
- error.textContent='';if(focus)focusHeading(steps[index].querySelector('h3'));
-}
-function validation(){
- if(current===0&&!selected('modality'))return ['Escolha como prefere ser atendido(a).','modality'];
- if(current===1&&!selected('goal'))return ['Selecione o motivo do contato.','goal'];
- if(current===2&&!selected('when'))return ['Escolha quando gostaria de agendar.','when'];
- if(current===2&&!selected('period'))return ['Selecione um período de preferência.','period'];
- if(current===3){
-  if(selected('name').trim().length<2)return ['Informe um nome com pelo menos 2 letras.','name'];
-  if(selected('city').trim().length<2)return ['Informe sua cidade e estado.','city'];
-  const phone=selected('phone').replace(/\D/g,'');
-  if(!/^\d{10,11}$/.test(phone))return ['Informe seu WhatsApp com DDD, com 10 ou 11 dígitos.','phone'];
-  if(!form.elements.consent.checked)return ['Confirme que concorda em compartilhar estas informações pelo WhatsApp.','consent'];
- }
- return null;
-}
+function updateWhatsAppLink(){whatsappContact.href=buildWhatsAppUrl();}
+form.addEventListener('input',updateWhatsAppLink);
+form.addEventListener('change',updateWhatsAppLink);
+whatsappContact.addEventListener('click',updateWhatsAppLink);
 form.addEventListener('submit',event=>{
- event.preventDefault();const issue=validation();
- if(issue){error.textContent=issue[0];const input=form.elements.namedItem(issue[1]);(input instanceof RadioNodeList?input[0]:input).focus();return;}
- if(current<3){showStep(current+1);return;}
- const summary=document.getElementById('summary');summary.replaceChildren();
- const entries=[['Nome',selected('name').trim()],['Modalidade',selected('modality')],['Interesse',selected('goal')],['Valor',selected('goal')==='Consulta de retorno'?'R$ 150 (retorno)':'R$ 250 (consulta)'],['Quando',selected('when')],['Período',selected('period')],['Cidade',selected('city').trim()],['WhatsApp',selected('phone')]];
- for(const [label,value] of entries){const row=document.createElement('div');const key=document.createElement('span');key.textContent=label;const val=document.createElement('strong');val.textContent=value;row.append(key,val);summary.append(row);}
- const message=['Olá, Dra. Gabriela! Gostaria de conversar sobre o atendimento. Preenchi o formulário do site:', '', ...entries.map(([label,value])=>`${label}: ${value}`), '', 'Aguardo a confirmação da disponibilidade e as orientações para agendar.'].join('\n');
- whatsappContact.href=`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
- form.hidden=true;document.getElementById('progressBlock').hidden=true;document.getElementById('success').hidden=false;focusHeading(document.querySelector('#success h3'));
+ event.preventDefault();
+ updateWhatsAppLink();
+ whatsappContact.click();
 });
-document.getElementById('back').addEventListener('click',()=>showStep(Math.max(0,current-1)));
-form.elements.phone.addEventListener('input',event=>{let digits=event.target.value.replace(/\D/g,'').slice(0,11);if(digits.length>2)digits='('+digits.slice(0,2)+') '+digits.slice(2);if(digits.replace(/\D/g,'').length>6){const at=digits.replace(/\D/g,'').length===11?10:9;digits=digits.slice(0,at)+'-'+digits.slice(at);}event.target.value=digits;});
-document.getElementById('restart').addEventListener('click',()=>{whatsappContact.removeAttribute('href');document.getElementById('summary').replaceChildren();document.getElementById('success').hidden=true;form.hidden=false;document.getElementById('progressBlock').hidden=false;showStep(3);});
 const dialog=document.getElementById('privacyDialog');
 for(const id of ['privacyForm','privacyFooter'])document.getElementById(id).addEventListener('click',()=>dialog.showModal());
 document.getElementById('closePrivacy').addEventListener('click',()=>dialog.close());
-form.reset();showStep(0,false);
+updateWhatsAppLink();
 
 const doctoraliaWidget=document.getElementById('doctoraliaWidget');
 const doctoraliaLauncher=document.getElementById('doctoraliaLauncher');
