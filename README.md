@@ -7,7 +7,7 @@ Landing page estática em HTML, CSS e JavaScript, com imagens locais e agendamen
 1. A apresentação inicial e o formulário não destacam preços. Uma seção própria, após os benefícios do atendimento, apresenta o investimento no cuidado. Os valores da consulta (R$ 250) e do retorno (R$ 150, cobrado separadamente), com Pix ou cartão, ficam no bloco expansível “Valores e formas de pagamento”.
 2. Há um formulário em uma única tela: primeiro nome e modalidade, ambos opcionais.
 3. “Continuar no WhatsApp” abre a conversa comercial com os campos preenchidos na mensagem. Não há etapa intermediária de revisão, e o texto não afirma que a pessoa viu ou aceitou um preço.
-4. Também há um botão para conversar diretamente, sem preencher campos.
+4. “Continuar no WhatsApp” pode ser usado sem preencher os campos. O botão extra abaixo das modalidades na apresentação foi removido.
 5. A pessoa revisa e confirma o envio no WhatsApp. A equipe combina horários, orienta o pagamento e confirma o agendamento.
 
 Cidade, telefone, interesse e disponibilidade são tratados na conversa. Não há perguntas sobre sintomas ou histórico clínico no site. Os links não enviam mensagens automaticamente, não reservam horários e não confirmam pagamento.
@@ -16,7 +16,9 @@ As respostas ficam apenas na página durante o preenchimento, sem gravação em 
 
 No celular, a apresentação da médica usa uma foto menor, um resumo e um bloco expansível com mais detalhes. Os benefícios ficam em linhas com ícones e textos breves; o passo a passo tem três instruções curtas. A seção de investimento mantém os valores recolhidos por padrão, e as dúvidas ficam em quatro blocos expansíveis.
 
-Um atalho para o WhatsApp aparece durante a leitura, quando o botão principal e o formulário estão fora da tela. Ele inclui os campos opcionais preenchidos no formulário ao ser usado. A Doctoralia permanece como alternativa à direita; o atalho fica oculto próximo ao formulário para manter os controles livres. No computador, o atalho para WhatsApp fica oculto.
+Um atalho para o WhatsApp aparece durante a leitura, quando a apresentação inicial e o formulário estão fora da tela. Ele inclui os campos opcionais preenchidos no formulário ao ser usado. A Doctoralia permanece como alternativa à direita; o atalho fica oculto próximo ao formulário para manter os controles livres. No computador, o atalho para WhatsApp fica oculto.
+
+Os ícones de seta são imagens PNG locais com fundo transparente, com uma versão clara para o botão da Doctoralia. O arquivo não depende da renderização de emojis do celular.
 
 ## Publicação na Vercel
 
