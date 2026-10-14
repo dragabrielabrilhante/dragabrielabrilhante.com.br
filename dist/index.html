@@ -235,6 +235,99 @@ fbq('track', 'PageView');
  .investment-copy h2{font-size:29px}
  .investment-info dl>div{gap:10px;flex-wrap:wrap}
 }
+
+/* Leitura breve e conteúdo complementar disponível ao tocar. */
+.compact-copy{margin-bottom:18px}
+.doctor-more{border-top:1px solid var(--line);margin:18px 0 20px}
+.doctor-more summary{list-style:none;cursor:pointer;position:relative;padding:14px 28px 14px 0;min-height:48px;color:var(--accent);font-size:13px;line-height:1.5}
+.doctor-more summary::-webkit-details-marker{display:none}
+.doctor-more summary:after{content:'+';position:absolute;right:3px;top:9px;font-size:21px}
+.doctor-more[open] summary:after{content:'−'}
+.doctor-more p{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 14px}
+.mobile-contact{display:none}
+@media(max-width:700px){
+ .header{padding:14px 0}
+ .hero{padding:24px 0 30px;gap:26px}
+ .hero h1{font-size:clamp(36px,10.2vw,46px);line-height:1.1;letter-spacing:-1.35px}
+ .hero .intro{margin:16px 0 18px;font-size:16px;line-height:1.6}
+ .hero .tags{gap:8px}
+ .hero .tag{font-size:12px;padding:5px 10px}
+ .hero-contact{margin-top:20px}
+ .hero-contact .hero-agenda{font-size:15px;min-height:50px}
+ .hero-contact-hint,.hero-bottom{display:none}
+ .headline-controls{margin-top:10px}
+ .short-card .form-top{display:none}
+ .short-card .form-body{padding:22px 20px}
+ .compact-copy h3{font-size:27px}
+ .compact-copy p{font-size:14px;line-height:1.5}
+ .compact-modality{margin:18px 0}
+ .compact-whatsapp{font-size:15px}
+ .compact-form .whatsapp-note{font-size:12px;margin-top:10px}
+ .compact-privacy{font-size:11px;line-height:1.6;margin-top:12px}
+ .compact-form .privacy{font-size:12px;min-height:44px}
+ .compact-form .form-foot{font-size:11px;margin-top:4px}
+ .form-alternative{margin-top:16px;padding-top:12px;font-size:12px}
+ .doctor{display:grid;grid-template-columns:clamp(88px,25vw,100px) minmax(0,1fr);align-items:start;column-gap:16px;row-gap:10px;padding:34px 0;border-bottom:1px solid var(--line)}
+ .doctor-photo{grid-column:1;grid-row:1/4;width:100%;max-width:none;height:132px;margin:0;justify-self:start}
+ .doctor-photo:before{inset:7px 7px -6px -6px;border-radius:12px}
+ .doctor-photo img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:50% 36%;border-radius:12px}
+ .doctor-photo-label{display:none}
+ .doctor-copy{display:contents}
+ .doctor-copy>.eyebrow{grid-column:2;grid-row:1;font-size:9px;letter-spacing:1.2px}
+ .doctor-copy h2{grid-column:2;grid-row:2;font-size:clamp(25px,7.1vw,30px);line-height:1.1;letter-spacing:-.6px;margin:0}
+ .doctor-copy h2 br{display:block}
+ .doctor-qualification{grid-column:2;grid-row:3;font-size:12px;line-height:1.5;margin:0}
+ .doctor-qualification span{font-size:10px;letter-spacing:.4px;margin-top:4px}
+ .doctor-copy>.doctor-bio{grid-column:1/-1;font-size:15px;line-height:1.7;margin:14px 0 0}
+ .doctor-more{grid-column:1/-1;margin:0}
+ .doctor-more summary{font-size:14px;padding:14px 28px 14px 0}
+ .doctor-more p{font-size:14px;line-height:1.7}
+ .doctor-cta{grid-column:1/-1;margin:6px 0 0}
+ .benefits{padding:30px 0}
+ .benefits-heading{margin-bottom:20px}
+ .benefits-heading h2{font-size:30px;line-height:1.2;margin-top:10px}
+ .benefit-grid{gap:10px}
+ .benefit-card{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:14px;row-gap:7px;padding:18px;align-items:start;border-radius:12px}
+ .benefit-top{grid-column:1;grid-row:1/3;width:40px;margin:0}
+ .benefit-icon{width:40px;height:40px}
+ .benefit-icon svg{width:24px;height:24px}
+ .benefit-number,.benefit-tag{display:none}
+ .benefit-card h3{grid-column:2;grid-row:1;font-size:22px;line-height:1.2;margin:0;letter-spacing:-.3px}
+ .benefit-card h3 br{display:none}
+ .benefit-card p{grid-column:2;grid-row:2;font-size:14px;line-height:1.6;margin:0}
+ .investment-section{gap:20px;padding:26px 22px;margin:0 0 12px}
+ .investment-copy h2{font-size:30px;line-height:1.2;margin:12px 0 16px}
+ .investment-copy>p{font-size:15px;line-height:1.65}
+ .investment-help{font-size:12px}
+ .journey{padding:34px 0;gap:20px}
+ .journey-intro>.eyebrow{font-size:9px;letter-spacing:1.2px}
+ .journey h2{font-size:30px;line-height:1.2;margin:12px 0 0}
+ .journey-step{grid-template-columns:30px minmax(0,1fr);gap:14px;padding:17px 0}
+ .journey-step:first-child{padding-top:0}
+ .journey-step .step-num{display:grid;place-items:center;width:30px;height:30px;padding:0;border-radius:50%;background:var(--cream);font:13px/1 Arial,sans-serif;color:var(--accent)}
+ .journey-step h3{font-size:22px;line-height:1.2;margin-bottom:5px}
+ .journey-step p{font-size:14px;line-height:1.6}
+ .care{display:none}
+ .faq{padding:30px 0;gap:10px}
+ .faq h2{font-size:30px;line-height:1.2;margin:0 0 12px}
+ .faq summary{font-size:15px;min-height:56px}
+ .faq details p{font-size:14px;line-height:1.6}
+ .footer{font-size:11px;padding-top:22px}
+ .footer-logo{width:210px}
+ .footer>p{margin:14px 0}
+ .mobile-contact:not([hidden]){display:block;position:fixed;left:16px;right:84px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:1000}
+ .mobile-whatsapp{min-height:52px;padding:13px 14px;border:1px solid #fffcfd;font-size:13px;line-height:1.4;box-shadow:0 5px 24px #412d3726;white-space:nowrap;border-radius:12px}
+ .mobile-whatsapp .arrow{font-size:18px}
+}
+@media(max-width:380px){
+ .doctor{column-gap:14px}
+ .benefit-card{padding:16px;column-gap:12px}
+ .benefit-card h3{font-size:21px}
+ .compact-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .compact-options .undecided{grid-column:1/-1}
+ .compact-options .option{padding:10px;gap:7px}
+ .compact-options .option strong{font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -243,7 +336,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1459303026043736&ev=PageView&noscript=1"
 /></noscript>
 <div class="wrap">
-<header class="header"><a class="brand brand-logo" href="#inicio" aria-label="Dra. Gabriela Brilhante, início"><img src="assets/logo-gabriela-brilhante.png" width="642" height="178" alt="Dra. Gabriela Brilhante — Médica pós-graduada em Psiquiatria — CRM/SP 260335"></a><nav class="nav" aria-label="Navegação principal"><a href="#como-funciona">Como funciona</a><a href="#duvidas">Dúvidas</a><a class="nav-cta" href="#agendamento">Quero agendar ↗</a></nav></header>
+<header class="header"><a class="brand brand-logo" href="#inicio" aria-label="Dra. Gabriela Brilhante, início"><img src="assets/logo-gabriela-brilhante.png" width="642" height="178" alt="Dra. Gabriela Brilhante — Médica pós-graduada em Psiquiatria — CRM/SP 260335"></a><nav class="nav" aria-label="Navegação principal"><a href="#como-funciona">Como funciona</a><a href="#duvidas">Dúvidas</a><a class="nav-cta" href="#agendamento">Agendar ↗</a></nav></header>
 <main id="inicio">
 <section class="hero" aria-labelledby="hero-title">
 <div><div class="eyebrow"><span class="dot"></span> Atendimento médico · Saúde mental</div><div class="hero-headline" id="heroHeadline"><h1 id="hero-title" class="rotating-title">
@@ -253,19 +346,19 @@ src="https://www.facebook.com/tr?id=1459303026043736&ev=PageView&noscript=1"
 <span class="hero-phrase" aria-hidden="true"><span>Pedir apoio</span><span>também é</span><em>se cuidar.</em></span>
 <span class="hero-phrase" aria-hidden="true"><span>Cuidar de você</span><span>também é uma</span><em>prioridade.</em></span>
 <span class="visually-hidden">Você não precisa dar conta de tudo sozinho(a). Um espaço de escuta para cuidar da sua saúde mental.</span>
-</h1><div class="headline-controls" id="heroHeadlineControls" hidden><span class="headline-progress" id="heroPhraseCount" aria-hidden="true">01 / 05</span></div></div><p class="intro">Um espaço de escuta para falar sobre o que você sente, entender suas necessidades e cuidar de você, no seu tempo.</p><div class="tags"><span class="tag">Consultas on-line</span><span class="tag">Presencial em Marília · SP</span></div><div class="hero-contact"><a class="primary hero-agenda" href="https://wa.me/5514998894616?text=Ol%C3%A1%2C%20Dra.%20Gabriela!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20o%20agendamento%20de%20uma%20consulta.%20Quais%20s%C3%A3o%20os%20pr%C3%B3ximos%20hor%C3%A1rios%20dispon%C3%ADveis%3F" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp com a Dra. Gabriela, abre em nova aba">Conversar no WhatsApp <span class="arrow" aria-hidden="true">↗</span></a><p class="hero-contact-hint">Horários e detalhes em uma conversa com a equipe.</p></div><div class="hero-bottom"><span class="round-icon" aria-hidden="true">↗</span><span>O primeiro passo pode ser uma conversa.</span></div></div>
+</h1><div class="headline-controls" id="heroHeadlineControls" hidden><span class="headline-progress" id="heroPhraseCount" aria-hidden="true">01 / 05</span></div></div><p class="intro">Escuta acolhedora para cuidar da sua saúde mental, no seu tempo.</p><div class="tags"><span class="tag">On-line</span><span class="tag">Marília · SP</span></div><div class="hero-contact"><a class="primary hero-agenda" href="https://wa.me/5514998894616?text=Ol%C3%A1%2C%20Dra.%20Gabriela!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20o%20agendamento%20de%20uma%20consulta.%20Quais%20s%C3%A3o%20os%20pr%C3%B3ximos%20hor%C3%A1rios%20dispon%C3%ADveis%3F" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp com a Dra. Gabriela, abre em nova aba">Conversar no WhatsApp <span class="arrow" aria-hidden="true">↗</span></a><p class="hero-contact-hint">Horários e detalhes em uma conversa com a equipe.</p></div><div class="hero-bottom"><span class="round-icon" aria-hidden="true">↗</span><span>O primeiro passo pode ser uma conversa.</span></div></div>
 <section class="form-card short-card" id="agendamento" aria-label="Contato para agendamento">
 <div class="form-top"><span class="serif">Seu primeiro passo</span><span class="duration">Uma única etapa</span></div>
 <div class="form-body">
-<div class="compact-copy"><h3>Vamos conversar?</h3><p>Conte só o básico. Os horários e os detalhes são combinados pelo WhatsApp.</p></div>
+<div class="compact-copy"><h3>Vamos conversar?</h3><p>Se quiser, conte só o básico.</p></div>
 
 <form id="leadForm" class="compact-form" novalidate>
-<div class="fields"><div><label for="contactName">Como podemos chamar você? <span class="optional">opcional</span></label><input id="contactName" name="name" autocomplete="name" maxlength="80" placeholder="Seu primeiro nome"></div></div>
-<fieldset class="compact-modality"><legend>Como prefere ser atendido(a)? <span class="optional">opcional</span></legend><div class="compact-options"><label class="option"><input type="radio" name="modality" value="On-line"><span><strong>On-line</strong></span></label><label class="option"><input type="radio" name="modality" value="Presencial em Marília"><span><strong>Presencial em Marília</strong></span></label><label class="option undecided"><input type="radio" name="modality" value="Ainda não decidi"><span><strong>Ainda não sei, quero conversar</strong></span></label></div></fieldset>
+<div class="fields"><div><label for="contactName">Seu nome <span class="optional">opcional</span></label><input id="contactName" name="name" autocomplete="name" maxlength="80" placeholder="Seu primeiro nome"></div></div>
+<fieldset class="compact-modality"><legend>Atendimento <span class="optional">opcional</span></legend><div class="compact-options"><label class="option"><input type="radio" name="modality" value="On-line"><span><strong>On-line</strong></span></label><label class="option"><input type="radio" name="modality" value="Presencial em Marília"><span><strong>Presencial em Marília</strong></span></label><label class="option undecided"><input type="radio" name="modality" value="Ainda não decidi"><span><strong>Quero ajuda para escolher</strong></span></label></div></fieldset>
 <a class="primary compact-whatsapp" id="whatsappContact" href="https://wa.me/5514998894616?text=Ol%C3%A1%2C%20Dra.%20Gabriela!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20o%20agendamento%20de%20uma%20consulta.%20Quais%20s%C3%A3o%20os%20pr%C3%B3ximos%20hor%C3%A1rios%20dispon%C3%ADveis%3F" target="_blank" rel="noopener noreferrer" aria-label="Continuar no WhatsApp com a Dra. Gabriela, abre em nova aba"><span>Continuar no WhatsApp</span><span class="arrow" aria-hidden="true">↗</span></a>
-<p class="whatsapp-note">O WhatsApp abre com uma mensagem pronta.<br>Toque em enviar para iniciar a conversa.</p>
-<p class="compact-privacy">Os campos são opcionais. Ao continuar, o que você preencher será incluído na mensagem do WhatsApp.</p>
-<button class="privacy" id="privacyForm" type="button">Como meus dados serão usados?</button>
+<p class="whatsapp-note">A mensagem abre pronta. Toque em enviar.</p>
+<p class="compact-privacy">O que você preencher será incluído na mensagem do WhatsApp.</p>
+<button class="privacy" id="privacyForm" type="button">Privacidade</button>
 <p class="form-foot">Contato: (14) 99889-4616 · Agendamento sujeito à confirmação.</p><a class="compact-investment-link" href="#investimento">Sobre o investimento no cuidado <span aria-hidden="true">↓</span></a>
 </form>
 <p class="form-alternative">Você também pode agendar pela<br><a href="https://www.doctoralia.com.br/gabriela-brilhante-barros-2/psiquiatra-medico-clinico-geral/marilia" target="_blank" rel="noopener noreferrer" aria-label="Ver perfil e agendar pela Doctoralia, abre em nova aba">Doctoralia <span aria-hidden="true">↗</span></a></p>
@@ -273,22 +366,27 @@ src="https://www.facebook.com/tr?id=1459303026043736&ev=PageView&noscript=1"
 </section>
 <section class="doctor" id="sobre-a-dra" aria-labelledby="doctor-title">
 <div class="doctor-photo"><img src="assets/foto-dra-gabriela.jpg" width="1924" height="2044" alt="Retrato da Dra. Gabriela Brilhante" loading="lazy" decoding="async"><span class="doctor-photo-label">Escuta, acolhimento e cuidado.</span></div>
-<div class="doctor-copy"><div class="eyebrow">Conheça a médica</div><h2 id="doctor-title">Dra. Gabriela <br>Brilhante</h2><div class="doctor-qualification">Médica pós-graduada em Psiquiatria<span>CRM/SP 260335</span></div><p>Sou a Dra. Gabriela Brilhante, médica com pós-graduação em Psiquiatria. Atendo on-line e presencialmente em Marília, com foco no cuidado em saúde mental.</p><p>Minha proposta é oferecer uma escuta acolhedora e atenta à sua história. Durante a consulta, conversamos sobre o que você sente, sua rotina e suas necessidades, para pensar nos próximos passos do cuidado de forma individualizada.</p><div class="doctor-details"><span>Atendimento on-line</span><span>Presencial em Marília · SP</span></div><a class="primary doctor-cta" href="#agendamento">Quero agendar minha consulta <span class="arrow" aria-hidden="true">↗</span></a></div>
+<div class="doctor-copy"><div class="eyebrow">Conheça a médica</div><h2 id="doctor-title">Dra. Gabriela <br>Brilhante</h2><div class="doctor-qualification">Médica pós-graduada em Psiquiatria<span>CRM/SP 260335</span></div><p class="doctor-bio">Meu atendimento une escuta acolhedora e atenção à sua história.</p><details class="doctor-more"><summary>Meu jeito de cuidar</summary><p>Sou médica com pós-graduação em Psiquiatria. Atendo on-line e presencialmente em Marília, com foco no cuidado em saúde mental.</p><p>Na consulta, conversamos sobre o que você sente, sua rotina e suas necessidades. Juntos, pensamos nos próximos passos do cuidado de forma individualizada.</p></details><a class="primary doctor-cta" href="#agendamento">Quero agendar minha consulta <span class="arrow" aria-hidden="true">↗</span></a></div>
 </section>
 <section class="benefits" aria-labelledby="benefits-title">
-<div class="benefits-heading"><div><div class="eyebrow">Você no centro do cuidado</div><h2 id="benefits-title">Mais espaço para você.<br>Mais atenção ao que sente.</h2></div><p>Dar o primeiro passo fica mais leve quando você sabe o que pode esperar do atendimento.</p></div>
+<div class="benefits-heading"><div><div class="eyebrow">Você no centro do cuidado</div><h2 id="benefits-title">Escuta. Respeito.<br>Atenção.</h2></div></div>
 <div class="benefit-grid">
-<article class="benefit-card"><div class="benefit-top"><span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15a10 10 0 0 1-10 10h-3l-7 3 2-7a10 10 0 1 1 18-6Z"/><path d="M11 13h10M11 17h7"/></svg></span><span class="benefit-number" aria-hidden="true">01</span></div><h3>Escuta <br>sem julgamentos.</h3><p>Um espaço para falar sobre o que você sente, com acolhimento e respeito à sua história.</p><span class="benefit-tag">Sua voz importa</span></article>
-<article class="benefit-card"><div class="benefit-top"><span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 27 5.5 16.5A6.4 6.4 0 0 1 14.6 7.4L16 9l1.4-1.6a6.4 6.4 0 0 1 9.1 9.1Z"/><path d="M9 17h4l2-5 3 9 2-4h3"/></svg></span><span class="benefit-number" aria-hidden="true">02</span></div><h3>Atenção à <br>sua individualidade.</h3><p>Sua rotina, suas necessidades e seu momento de vida fazem parte da construção do cuidado.</p><span class="benefit-tag">Você além dos sintomas</span></article>
-<article class="benefit-card"><div class="benefit-top"><span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="22" height="21" rx="3"/><path d="M10 4v6M22 4v6M5 13h22m-16 7 3 3 7-7"/></svg></span><span class="benefit-number" aria-hidden="true">03</span></div><h3>Mais facilidade <br>para se cuidar.</h3><p>Consulta on-line ou presencial em Marília. Escolha a modalidade que combina com sua rotina.</p><span class="benefit-tag">Cuidado mais perto de você</span></article>
+<article class="benefit-card"><div class="benefit-top"><span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 15a10 10 0 0 1-10 10h-3l-7 3 2-7a10 10 0 1 1 18-6Z"/><path d="M11 13h10M11 17h7"/></svg></span><span class="benefit-number" aria-hidden="true">01</span></div><h3>Escuta <br>sem julgamentos.</h3><p>Escuta acolhedora, com respeito à sua história.</p><span class="benefit-tag">Sua voz importa</span></article>
+<article class="benefit-card"><div class="benefit-top"><span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 27 5.5 16.5A6.4 6.4 0 0 1 14.6 7.4L16 9l1.4-1.6a6.4 6.4 0 0 1 9.1 9.1Z"/><path d="M9 17h4l2-5 3 9 2-4h3"/></svg></span><span class="benefit-number" aria-hidden="true">02</span></div><h3>Atenção à <br>sua individualidade.</h3><p>Cuidado pensado para você e seu momento de vida.</p><span class="benefit-tag">Você além dos sintomas</span></article>
+<article class="benefit-card"><div class="benefit-top"><span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="22" height="21" rx="3"/><path d="M10 4v6M22 4v6M5 13h22m-16 7 3 3 7-7"/></svg></span><span class="benefit-number" aria-hidden="true">03</span></div><h3>Mais facilidade <br>para se cuidar.</h3><p>On-line ou presencial, com agendamento pelo WhatsApp.</p><span class="benefit-tag">Cuidado mais perto de você</span></article>
 </div></section>
 <section class="investment-section" id="investimento" aria-labelledby="investment-title">
-<div class="investment-copy"><div class="eyebrow">Seu momento de cuidado</div><h2 id="investment-title">Um investimento<br>no seu bem-estar.</h2><p>A consulta é um momento reservado para conversar sobre o que você sente, compreender sua história e pensar nos próximos passos do cuidado.</p><p>O atendimento é particular, on-line ou presencial em Marília. A equipe pode esclarecer os detalhes e ajudar você a encontrar um horário.</p></div>
-<div class="investment-information"><details class="investment-info" id="investmentInfo"><summary>Valores e formas de pagamento</summary><div class="investment-info-body"><dl><div><dt>Consulta particular</dt><dd>R$ 250,00</dd></div><div><dt>Consulta de retorno</dt><dd>R$ 150,00</dd></div></dl><p>O retorno é cobrado separadamente. O pagamento pode ser feito por Pix ou cartão.</p><p>O horário é reservado após a confirmação do pagamento.</p></div></details><a class="primary investment-contact" href="https://wa.me/5514998894616?text=Ol%C3%A1%2C%20Dra.%20Gabriela!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20o%20agendamento%20de%20uma%20consulta.%20Quais%20s%C3%A3o%20os%20pr%C3%B3ximos%20hor%C3%A1rios%20dispon%C3%ADveis%3F" target="_blank" rel="noopener noreferrer" aria-label="Conversar sobre a consulta no WhatsApp, abre em nova aba">Conversar com a equipe <span class="arrow" aria-hidden="true">↗</span></a><p class="investment-help">Você pode esclarecer suas dúvidas antes de agendar.</p></div>
+<div class="investment-copy"><div class="eyebrow">Seu momento de cuidado</div><h2 id="investment-title">Um investimento<br>no seu bem-estar.</h2><p>Um tempo reservado para ouvir sua história e pensar nos próximos passos do cuidado.</p></div>
+<div class="investment-information"><details class="investment-info" id="investmentInfo"><summary>Valores e formas de pagamento</summary><div class="investment-info-body"><dl><div><dt>Consulta particular</dt><dd>R$ 250,00</dd></div><div><dt>Consulta de retorno</dt><dd>R$ 150,00</dd></div></dl><p>O retorno é cobrado separadamente. O pagamento pode ser feito por Pix ou cartão.</p><p>O horário é reservado após a confirmação do pagamento.</p></div></details><a class="primary investment-contact" href="https://wa.me/5514998894616?text=Ol%C3%A1%2C%20Dra.%20Gabriela!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20o%20agendamento%20de%20uma%20consulta.%20Quais%20s%C3%A3o%20os%20pr%C3%B3ximos%20hor%C3%A1rios%20dispon%C3%ADveis%3F" target="_blank" rel="noopener noreferrer" aria-label="Conversar sobre a consulta no WhatsApp, abre em nova aba">Conversar com a equipe <span class="arrow" aria-hidden="true">↗</span></a><p class="investment-help">Tire suas dúvidas antes de agendar.</p></div>
 </section>
-<section class="journey" id="como-funciona"><div class="journey-intro"><div class="eyebrow">Do primeiro contato à consulta</div><h2>Um passo de<br>cada vez.</h2><p>Saiba como funciona o caminho até o atendimento, com clareza desde o início.</p></div><div class="steps"><div class="journey-step"><span class="step-num">01 /</span><div><h3>Comece com uma conversa</h3><p>Abra a conversa pelo WhatsApp. Se quiser, informe antes seu nome e a modalidade de atendimento.</p></div></div><div class="journey-step"><span class="step-num">02 /</span><div><h3>Combine os detalhes</h3><p>A equipe verifica os horários disponíveis, esclarece suas dúvidas e orienta a confirmação do agendamento.</p></div></div><div class="journey-step"><span class="step-num">03 /</span><div><h3>Tenha seu momento de cuidado</h3><p>Com a consulta confirmada, você recebe as orientações para o encontro presencial ou por videochamada.</p></div></div></div></section>
+<section class="journey" id="como-funciona"><div class="journey-intro"><div class="eyebrow">Do primeiro contato à consulta</div><h2>Como começar.</h2></div><div class="steps"><div class="journey-step"><span class="step-num">01</span><div><h3>Converse</h3><p>Fale com a equipe pelo WhatsApp.</p></div></div><div class="journey-step"><span class="step-num">02</span><div><h3>Agende</h3><p>Combine um horário e confirme o agendamento.</p></div></div><div class="journey-step"><span class="step-num">03</span><div><h3>Cuide de você</h3><p>Receba as orientações para sua consulta.</p></div></div></div></section>
 <section class="care"><div><h2>Não é preciso encontrar todas<br>as respostas antes de começar.</h2><p>Você pode dar o primeiro passo contando como prefere ser atendido(a).</p></div><a class="primary" href="#agendamento">Quero dar o primeiro passo <span class="arrow" aria-hidden="true">↗</span></a></section>
-<section class="faq" id="duvidas"><div><div class="eyebrow">Para você se sentir à vontade</div><h2>Antes de agendar.</h2></div><div><details><summary>Como funciona a consulta on-line?</summary><p>O atendimento acontece por videochamada. Após a confirmação, você recebe as orientações de acesso. Escolha um local reservado, com conexão à internet.</p></details><details><summary>Onde é o atendimento presencial?</summary><p>Em Marília, São Paulo. O endereço e as orientações são confirmados durante o agendamento.</p></details><details><summary>Qual é o valor? O retorno está incluído?</summary><p>A consulta particular custa R$ 250. O retorno tem valor de R$ 150 e é cobrado separadamente. O pagamento pode ser feito por Pix ou cartão.</p></details><details><summary>Entrar em contato garante meu horário?</summary><p>Não. Após receber sua mensagem pelo WhatsApp, a equipe verifica a disponibilidade. O horário é reservado após a confirmação do pagamento.</p></details><details><summary>Preciso contar meu histórico por aqui?</summary><p>Não. Você pode iniciar a conversa sem preencher o formulário. Informações clínicas são conversadas durante o atendimento.</p></details></div></section>
+<section class="faq" id="duvidas"><div><h2>Ficou alguma dúvida?</h2></div><div>
+<details><summary>Como é a consulta on-line?</summary><p>Por videochamada. Você recebe as orientações após a confirmação. Escolha um local reservado, com internet.</p></details>
+<details><summary>Onde fica o consultório?</summary><p>Em Marília · SP. O endereço é informado no agendamento.</p></details>
+<details><summary>Como confirmar meu horário?</summary><p>A equipe confirma a disponibilidade pelo WhatsApp. O horário é reservado após a confirmação do pagamento.</p></details>
+<details><summary>Preciso contar meu histórico aqui?</summary><p>Não. Informações clínicas são conversadas durante a consulta.</p></details>
+</div></section>
 </main>
 <footer class="footer"><div class="footer-logo"><img src="assets/logo-gabriela-brilhante.png" width="642" height="178" alt="Dra. Gabriela Brilhante — Médica pós-graduada em Psiquiatria — CRM/SP 260335" loading="lazy"></div><p>Atendimento on-line e presencial em Marília · SP. Agendamento sujeito à disponibilidade e confirmação.</p><button class="privacy" id="privacyFooter" type="button">Privacidade</button></footer>
 </div>
@@ -303,5 +401,7 @@ src="https://www.facebook.com/tr?id=1459303026043736&ev=PageView&noscript=1"
 <a class="doctoralia-link" id="doctoraliaProfile" href="https://www.doctoralia.com.br/gabriela-brilhante-barros-2/psiquiatra-medico-clinico-geral/marilia" target="_blank" rel="noopener noreferrer" aria-label="Ver perfil e agendar pela Doctoralia, abre em nova aba">Ver perfil e agendar <span aria-hidden="true">↗</span></a>
 <small>O perfil será aberto em uma nova aba.</small>
 </div></aside>
+<aside class="mobile-contact" id="mobileContact" aria-label="Contato rápido pelo WhatsApp" hidden><a class="primary mobile-whatsapp" id="mobileWhatsapp" href="https://wa.me/5514998894616?text=Ol%C3%A1%2C%20Dra.%20Gabriela!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20o%20agendamento%20de%20uma%20consulta.%20Quais%20s%C3%A3o%20os%20pr%C3%B3ximos%20hor%C3%A1rios%20dispon%C3%ADveis%3F" target="_blank" rel="noopener noreferrer" aria-label="Falar com a equipe da Dra. Gabriela no WhatsApp, abre em nova aba">Falar no WhatsApp <span class="arrow" aria-hidden="true">↗</span></a></aside>
 <script src="app.js"></script>
 </body></html>
+

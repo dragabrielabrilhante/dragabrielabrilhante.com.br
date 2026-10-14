@@ -14,7 +14,9 @@ Cidade, telefone, interesse e disponibilidade são tratados na conversa. Não h�
 
 As respostas ficam apenas na página durante o preenchimento, sem gravação em cadastro ou no navegador. O fluxo de registro em Google Sheets continua separado desta versão e não foi ativado.
 
-O botão flutuante da Doctoralia permanece como alternativa de agendamento.
+No celular, a apresentação da médica usa uma foto menor, um resumo e um bloco expansível com mais detalhes. Os benefícios ficam em linhas com ícones e textos breves; o passo a passo tem três instruções curtas. A seção de investimento mantém os valores recolhidos por padrão, e as dúvidas ficam em quatro blocos expansíveis.
+
+Um atalho para o WhatsApp aparece durante a leitura, quando o botão principal e o formulário estão fora da tela. Ele inclui os campos opcionais preenchidos no formulário ao ser usado. A Doctoralia permanece como alternativa à direita; o atalho fica oculto próximo ao formulário para manter os controles livres. No computador, o atalho para WhatsApp fica oculto.
 
 ## Publicação na Vercel
 
@@ -55,3 +57,4 @@ Para alterar o destino, atualize `whatsappNumber` em `dist/app.js`, o contato ex
 - WhatsApp: https://faq.whatsapp.com/5913398998672934/?locale=pt_BR
 - Build na Vercel: https://vercel.com/docs/builds/configure-a-build
 - `vercel.json`: https://vercel.com/docs/project-configuration/vercel-json
+

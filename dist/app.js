@@ -32,6 +32,7 @@ const doctoraliaWidget=document.getElementById('doctoraliaWidget');
 const doctoraliaLauncher=document.getElementById('doctoraliaLauncher');
 const doctoraliaPanel=document.getElementById('doctoraliaPanel');
 const doctoraliaClose=document.getElementById('doctoraliaClose');
+let syncMobileControls=()=>{};
 function setDoctoraliaOpen(open,restoreFocus=true){
  doctoraliaWidget.classList.toggle('is-open',open);
  doctoraliaLauncher.setAttribute('aria-expanded',String(open));
@@ -39,6 +40,7 @@ function setDoctoraliaOpen(open,restoreFocus=true){
  doctoraliaPanel.hidden=!open;
  if(open)doctoraliaClose.focus({preventScroll:true});
  else if(restoreFocus)doctoraliaLauncher.focus({preventScroll:true});
+ syncMobileControls();
 }
 doctoraliaLauncher.addEventListener('click',()=>setDoctoraliaOpen(true));
 doctoraliaClose.addEventListener('click',()=>setDoctoraliaOpen(false));
@@ -49,29 +51,40 @@ document.addEventListener('pointerdown',event=>{
  if(!doctoraliaPanel.hidden&&!doctoraliaWidget.contains(event.target))setDoctoraliaOpen(false,false);
 });
 
-// No celular, mantenha os controles livres e ofereça a Doctoralia dentro do formulário.
+// No celular, os atalhos aparecem enquanto a pessoa lê o conteúdo.
+const mobileContact=document.getElementById('mobileContact');
+const mobileWhatsapp=document.getElementById('mobileWhatsapp');
+if(mobileWhatsapp)mobileWhatsapp.addEventListener('click',()=>{mobileWhatsapp.href=buildWhatsAppUrl();});
 if(typeof window!=='undefined'&&typeof IntersectionObserver!=='undefined'){
  const mobileViewport=window.matchMedia('(max-width:700px)');
+ const heroContact=document.querySelector('.hero-contact .hero-agenda');
  let formInView=false;
- function syncDoctoraliaForMobile(){
-  const hide=mobileViewport.matches&&formInView;
-  if(hide&&!doctoraliaPanel.hidden)setDoctoraliaOpen(false,false);
-  doctoraliaWidget.classList.toggle('is-near-form',hide);
-  if(hide){
+ let heroContactInView=true;
+ syncMobileControls=()=>{
+  const hideDoctoralia=mobileViewport.matches&&formInView;
+  if(hideDoctoralia&&!doctoraliaPanel.hidden)setDoctoraliaOpen(false,false);
+  doctoraliaWidget.classList.toggle('is-near-form',hideDoctoralia);
+  if(hideDoctoralia){
    doctoraliaWidget.setAttribute('aria-hidden','true');
    doctoraliaWidget.setAttribute('inert','');
   }else{
    doctoraliaWidget.removeAttribute('aria-hidden');
    doctoraliaWidget.removeAttribute('inert');
   }
- }
- const formObserver=new IntersectionObserver(([entry])=>{
-  formInView=entry.isIntersecting;
-  syncDoctoraliaForMobile();
+  if(mobileContact)mobileContact.hidden=!mobileViewport.matches||heroContactInView||formInView||!doctoraliaPanel.hidden;
+ };
+ const contactObserver=new IntersectionObserver(entries=>{
+  for(const entry of entries){
+   if(entry.target===heroContact)heroContactInView=entry.isIntersecting;
+   else formInView=entry.isIntersecting;
+  }
+  syncMobileControls();
  },{threshold:0});
- formObserver.observe(document.getElementById('agendamento'));
- if(mobileViewport.addEventListener)mobileViewport.addEventListener('change',syncDoctoraliaForMobile);
- else mobileViewport.addListener(syncDoctoraliaForMobile);
+ contactObserver.observe(document.getElementById('agendamento'));
+ if(heroContact)contactObserver.observe(heroContact);
+ if(mobileViewport.addEventListener)mobileViewport.addEventListener('change',syncMobileControls);
+ else mobileViewport.addListener(syncMobileControls);
+ syncMobileControls();
 }
 
 const heroHeadline=document.getElementById('heroHeadline');
@@ -105,3 +118,4 @@ if(heroHeadline&&typeof window!=='undefined'){
  }
  syncRotation();
 }
+
