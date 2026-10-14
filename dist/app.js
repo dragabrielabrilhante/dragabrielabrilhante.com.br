@@ -11,7 +11,7 @@ function buildWhatsAppUrl(){
  const message=['Olá, Dra. Gabriela! Vim pelo site e gostaria de conversar sobre o agendamento de uma consulta.'];
  if(name)message.push('Nome: '+name);
  if(modality)message.push('Modalidade: '+modality);
- message.push('Vi o valor da consulta particular: R$ 250.','Quais são os próximos horários disponíveis?');
+ message.push('Quais são os próximos horários disponíveis?');
  return 'https://wa.me/'+whatsappNumber+'?text='+encodeURIComponent(message.join('\n'));
 }
 function updateWhatsAppLink(){whatsappContact.href=buildWhatsAppUrl();}

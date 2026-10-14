@@ -4,9 +4,9 @@ Landing page estática em HTML, CSS e JavaScript, com imagens locais e agendamen
 
 ## Como funciona o contato
 
-1. O valor de R$ 250 fica visível antes dos botões de contato. O retorno de R$ 150 é informado separadamente.
+1. A apresentação inicial e o formulário não destacam preços. Uma seção própria, após os benefícios do atendimento, apresenta o investimento no cuidado. Os valores da consulta (R$ 250) e do retorno (R$ 150, cobrado separadamente), com Pix ou cartão, ficam no bloco expansível “Valores e formas de pagamento”.
 2. Há um formulário em uma única tela: primeiro nome e modalidade, ambos opcionais.
-3. “Continuar no WhatsApp” abre a conversa comercial com os campos preenchidos na mensagem. Não há etapa intermediária de revisão.
+3. “Continuar no WhatsApp” abre a conversa comercial com os campos preenchidos na mensagem. Não há etapa intermediária de revisão, e o texto não afirma que a pessoa viu ou aceitou um preço.
 4. Também há um botão para conversar diretamente, sem preencher campos.
 5. A pessoa revisa e confirma o envio no WhatsApp. A equipe combina horários, orienta o pagamento e confirma o agendamento.
 
